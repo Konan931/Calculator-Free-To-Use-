@@ -1,103 +1,122 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Page Title</title>
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=swap" rel="stylesheet">
-       <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet"> 
-       <style>
-body {
-    
-}
-.i{
-   width:85%;
-   height:50px;
-   background-color:white;
-   border:none;
-   position:relative ;
-   margin:auto ;
-   border-radius:8px;
-   top:60px;
-   font-weight:bold;
-   font-size:25px;
-   text-align:right;
-   font-family: "Roboto Mono",monospace;
-   outline:none;
-}
+<head>
+    <title>Improved Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: #f0f0f0;
+        }
+        .container {
+            width: 300px;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .display {
+            width: 100%;
+            height: 50px;
+            background-color: #ececec;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.5rem;
+            text-align: right;
+            padding: 10px;
+            box-sizing: border-box;
+            font-family: "Roboto Mono", monospace;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        button {
+            width: 100%;
+            height: 60px;
+            background: whitesmoke;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            box-shadow: 2px 2px 5px #d9d9d9, -2px -2px 5px #fff;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        button:active {
+            box-shadow: inset 4px 4px 10px #d9d9d9, inset -4px -4px 10px #ececec;
+            transform: scale(0.95);
+        }
+        .span-2 {
+            grid-column: span 2;
+        }
+        .operator {
+            background-color: #ffcccb;
+        }
+        .equal {
+            background-color: #bde0fe;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <input id="display" class="display" type="text" disabled>
+        <div class="buttons">
+            <button onclick="appendNumber(7)">7</button>
+            <button onclick="appendNumber(8)">8</button>
+            <button onclick="appendNumber(9)">9</button>
+            <button class="operator" onclick="appendOperator('*')">×</button>
 
-input[type=button]{
-    width:60px;
-    height:60px;
-    box-shadow:  5px 5px 10px #d9d9d9, -5px -5px 10px #fff;
-    border:none;
-    line-height:30px;
-    border-radius:50%;
-    font-size:18px;
-    text-align:center ;
-    background:#ececec;
-    font-weight:bold;
-    left:2vh;
-    top:6vh;
-    position:relative ;
-    outline:none;
-    margin:3px;
-    background-color:whitesmoke;
-     font-family:'Nunito', sans-serif;
-}
-input[type=button]:active{
-    box-shadow: inset 20px 20px 60px #d9d9d9, inset -20px -20px 60px #ececec;
-}
-.can{
-    width:80%;
-    height:530px;
-    background-color:white;
-    box-shadow:0 0 5px grey;
-    position:relative ;
-    margin:auto ;
-    border:1px solid ;
-    top:80px;
-    border-radius:10px;
-}
-</style>
-    </head>
-    <body>
-    <div class="can">
-       <form name ="cal">
-<center><input class="i" type="text" name ="display"disabled></center>
-<br><br>
+            <button onclick="appendNumber(4)">4</button>
+            <button onclick="appendNumber(5)">5</button>
+            <button onclick="appendNumber(6)">6</button>
+            <button class="operator" onclick="appendOperator('/')">÷</button>
 
-<input  type="button" value ="7" onclick ="cal.display.value+='7'">
-<input type="button" value="8" onclick="cal.display.value+='8'">
-<input 
- type="button" value="9"onclick="cal.display.value+='9'">
-<input  type="button" value="×"onclick="cal.display.value+='*'">
-<br><br>
-<input  type="button" value="6"onclick="cal.display.value+='6'">
-<input  type="button" value="5"onclick="cal.display.value+='5'">
+            <button onclick="appendNumber(1)">1</button>
+            <button onclick="appendNumber(2)">2</button>
+            <button onclick="appendNumber(3)">3</button>
+            <button class="operator" onclick="appendOperator('-')">−</button>
 
-<input  type="button" value="4"onclick="cal.display.value+='4'">
-<input  type="button" value="÷"onclick="cal.display.value+='/'">
-<br><br>
-<input  type="button" value="3"onclick="cal.display.value+='3'">
+            <button class="span-2" onclick="appendNumber(0)">0</button>
+            <button onclick="appendOperator('.')">.</button>
+            <button class="operator" onclick="appendOperator('+')">+</button>
 
-<input  type="button" value="2"onclick="cal.display.value+='2'">
-<input  type="button" value="1"onclick="cal.display.value+='1'">
-<input  type="button" value="-"onclick="cal.display.value+='-'">
-<br><br>
-<input  type="button" value ="0" onclick ="cal.display.value+='0'">
-<input type="button" value ="+" onclick ="cal.display.value+='+'">
-<input type="button" value ="%" onclick ="cal.display.value+='%'">
-<input  type="button" value ="=" onclick ="cal.display.value =eval(cal.display.value)">
-<input type="button" value ="C" onclick ="cal.display.value=''">
-<input type="button" value ="." onclick ="cal.display.value+='.'">
-<input type="button" value ="," onclick ="cal.display.value+=','">
-<input type="button" value ="-" onclick ="cal.display.value+='-'">
-<br><br>
+            <button class="span-2" onclick="clearDisplay()">C</button>
+            <button class="equal" onclick="calculate()">=</button>
+        </div>
+    </div>
 
+    <script>
+        const display = document.getElementById('display');
 
+        function appendNumber(number) {
+            display.value += number;
+        }
 
+        function appendOperator(operator) {
+            if (display.value === '' && operator !== '.') return; // Avoid starting with an operator
+            display.value += operator;
+        }
 
+        function clearDisplay() {
+            display.value = '';
+        }
 
-</form>
-</div>
-    </body>
+        function calculate() {
+            try {
+                display.value = eval(display.value);
+            } catch (e) {
+                display.value = 'Error';
+            }
+        }
+    </script>
+</body>
 </html>
